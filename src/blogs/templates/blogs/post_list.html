@@ -1,24 +1,23 @@
 <!DOCTYPE HTML>
+<html>
+        {% extends "base.html" %}
+        {% block content %}
+            <h2> {{blog.title}} ({{blog.category.title}})</h2>
+            <p> {{blog.created_at}} </p>
+            <p> {{blog.description}} <p>
 
-{% extends "base.html" %}
-
-{% block title %}Список постов{% endblock %}
-
-{% block content %}
-    {% for post in object_list %}
-        <div>
-            <div>
-                    <h2><a href="{{post.get_absolute_url}}">
-                                    {{ post.title }}</a>  ({{post.likes}})
-                     </h2>
-            </div>
-            <p>created at: {{post.created_at}} </p>
-
-            <div>{{ post.text }}</div>
             <br>
 
-        </div>
-        {% empty %}
-        <p> Нет постов </p>
-    {% endfor %}
-{% endblock %}
+            <h2> Posts </h2>
+            <br>
+
+            {% for post in blog.post_set.all %}
+                <p><h2> <a href="{{post.get_absolute_url}}">
+                        {{post.title}} </a></p></h2>
+                <p> created at: {{post.created_at}}</p>
+                <br>
+            {% empty %} Нет постов
+            {% endfor %}
+
+        {% endblock %}
+</html>

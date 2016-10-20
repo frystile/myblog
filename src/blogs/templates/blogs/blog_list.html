@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+
+{% extends "base.html" %}
+
+{% block title %}Список блогов{% endblock %}
+
+{% block content %}
+    <head><h1> Список блогов </h1></head>
+    {% for blog in object_list %}
+        <div>
+            <div>
+                    <h2><a href="{{blog.get_absolute_url}}posts">
+                                    {{ blog.title }}</a> ({{blog.category.title}})
+                     </h2>
+            </div>
+            <p>created at: {{blog.created_at}} </p>
+
+            <div>{{ blog.description }}</div>
+            <br>
+
+        </div>
+        {% empty %}
+        <p> Нет блогов </p>
+    {% endfor %}
+{% endblock %}
+
+</html>

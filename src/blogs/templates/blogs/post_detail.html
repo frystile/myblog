@@ -3,6 +3,10 @@
         {% extends "base.html" %}
         {% block content %}
             <h2> {{post.title}} ({{post.likes}})</h2>
+            <p>Tags: {% for tag in post.tag_set.all %} 
+                #{{tag.hashtag}} 
+            {% empty %} нет тегов
+            {% endfor %} </p>
             <p> {{post.created_at}} </p>
             <p> {{post.content}} <p>
 
@@ -14,6 +18,7 @@
                 <p> {{comment.text}} </p>
                 <p> created at: {{comment.created_at}}</p>
                 <br>
+            {% empty %} Нет комментариев
             {% endfor %}
 
         {% endblock %}
