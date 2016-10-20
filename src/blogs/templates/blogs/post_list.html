@@ -4,6 +4,7 @@
         {% block content %}
             <h2> {{blog.title}} ({{blog.category.title}})</h2>
             <p> {{blog.created_at}} </p>
+            <p> Author: {{blog.author.get_username}} </p>
             <p> {{blog.description}} <p>
 
             <br>

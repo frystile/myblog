@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -15,9 +16,10 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return "/blogs/%i/posts/%i/" % (self.blog.id, self.id)
+        return reverse('blogs:post_detail', kwargs={'blog': self.blog.id, 'pk': self.id})
 
 class Blog(models.Model):
+    author = models.ForeignKey('core.User', default=1)
     title = models.CharField(max_length=255)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -27,7 +29,7 @@ class Blog(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return "/blogs/%i/" % self.id
+        return reverse('blogs:post_list', kwargs={'pk': self.id})
 
 class Category(models.Model):
     title = models.CharField(max_length=255)

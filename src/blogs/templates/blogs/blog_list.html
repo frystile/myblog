@@ -10,11 +10,12 @@
     {% for blog in object_list %}
         <div>
             <div>
-                    <h2><a href="{{blog.get_absolute_url}}posts">
+                    <h2><a href="{{ blog.get_absolute_url }}">
                                     {{ blog.title }}</a> ({{blog.category.title}})
                      </h2>
             </div>
-            <p>created at: {{blog.created_at}} </p>
+            <p>created at: {{ blog.created_at }} </p>
+            <p>Author: {{ blog.author.get_username }} </p>
 
             <div>{{ blog.description }}</div>
             <br>

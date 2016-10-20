@@ -8,6 +8,7 @@
             {% empty %} нет тегов
             {% endfor %} </p>
             <p> {{post.created_at}} </p>
+            <p> Author: {{post.blog.author.get_username}} </p>
             <p> {{post.content}} <p>
 
             <br>
@@ -17,6 +18,7 @@
             {% for comment in post.comment_set.all %}
                 <p> {{comment.text}} </p>
                 <p> created at: {{comment.created_at}}</p>
+                <p> commented by: {{comment.author.get_username}} </p> 
                 <br>
             {% empty %} Нет комментариев
             {% endfor %}
